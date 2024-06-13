@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, collection, onSnapshot, addDoc, Timestamp, query, orderBy,  } from "firebase/firestore";
 import { formatDistanceToNow } from "date-fns";
 
@@ -52,7 +52,7 @@ onSnapshot(q, snapshot => {
 
 // add chats to db
 const addChat = document.querySelector('.add-chat');
-addChat.addEventListener('submit', e => {
+addChat?.addEventListener('submit', e => {
     e.preventDefault();
     const now = Timestamp.fromDate(new Date());
     addDoc(collref, {
@@ -67,7 +67,7 @@ addChat.addEventListener('submit', e => {
 
 // Update name
 const addName = document.querySelector('.add-name');
-addName.addEventListener('submit', e => {
+addName?.addEventListener('submit', e => {
     e.preventDefault();
     localStorage.setItem('username', addName.name.value.trim());
     addName.reset();
@@ -107,4 +107,15 @@ loginForm?.addEventListener('submit', (e) => {
         loginForm.reset();
     })
     .catch((err) => console.log(err));
+});
+
+// Logout
+const logOut = document.querySelector('.logout');
+logOut?.addEventListener('click', () => {
+    signOut(auth)
+    .then(() => {
+        alert('Logged out Successfully');
+        window.location.assign("./signin.html");
+    })
+    .catch(err => console.log(err));
 });
