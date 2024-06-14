@@ -38,7 +38,7 @@ onSnapshot(q, snapshot => {
            const html = `
                 <li class="relative mt-5">
                     <img class="w-12 h-12 rounded-full" src="./imagesdtyuij.jpg" alt="">
-                    <div class="flex justify-between absolute top-0 left-16 right-0">
+                    <div class="flex justify-between absolute top-0 left-16 right-2">
                         <div class="font-bold">${data.username}</div>
                         <div class="text-sm">${when}</div>
                     </div>
