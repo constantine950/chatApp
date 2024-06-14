@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, collection, onSnapshot, addDoc, Timestamp, query, orderBy,  } from "firebase/firestore";
-import { formatDistanceToNow, format } from "date-fns";
+import { format } from "date-fns";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAuUnIMrGLF8w12TS3g4Snpund7qRVrzhI",
