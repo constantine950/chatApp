@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, collection, onSnapshot, addDoc, Timestamp, query, orderBy,  } from "firebase/firestore";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, format } from "date-fns";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAuUnIMrGLF8w12TS3g4Snpund7qRVrzhI",
@@ -33,7 +33,7 @@ onSnapshot(q, snapshot => {
     snapshot.docChanges().forEach(change => {
         if(change.type === 'added'){
             const data = change.doc.data();
-            const when = formatDistanceToNow(data.created_at.toDate(), {addSuffix: true});
+            const when = format(data.created_at.toDate(), 'HH:mm');
            // update ui
            const html = `
                 <li class="relative mt-5">
@@ -73,6 +73,22 @@ addName?.addEventListener('submit', e => {
     addName.reset();
 });
 
+//searching for chat
+const filterChats = (term) => {
+    Array.from(msgList.children)
+        .filter(chat => !chat.textContent.includes(term))
+        .forEach(chat => chat.classList.add('hidden'));
+
+    Array.from(msgList.children)
+        .filter(chat => chat.textContent.includes(term))
+        .forEach(chat => chat.classList.remove('hidden'));
+};
+
+const search = document.querySelector(".search");
+search?.addEventListener('keyup', () => {
+    const term = search.value.trim();
+    filterChats(term);
+});
 
 // sign up 
 const userSignup = document.querySelector('.signup');
