@@ -42,7 +42,7 @@ onSnapshot(q, snapshot => {
                         <div class="font-bold">${data.username}</div>
                         <div class="text-sm">${when}</div>
                     </div>
-                    <span class="absolute top-6 left-16">${data.message}</span>
+                    <span class="absolute top-6 left-16 right-2 break-words pb-7">${data.message}</span>
                 </li>
            `;
             msgList.innerHTML += html;
