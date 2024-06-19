@@ -76,20 +76,21 @@ addName?.addEventListener('submit', e => {
 });
 
 //searching for chat
-const filterChats = (term) => {
+const filterChats = (termLow) => {
     Array.from(msgList.children)
-        .filter(chat => !chat.textContent.includes(term))
+        .filter(chat => !chat.textContent.includes(termLow))
         .forEach(chat => chat.classList.add('hidden'));
 
     Array.from(msgList.children)
-        .filter(chat => chat.textContent.includes(term))
+        .filter(chat => chat.textContent.includes(termLow))
         .forEach(chat => chat.classList.remove('hidden'));
 };
 
 const search = document.querySelector(".search");
 search?.addEventListener('keyup', () => {
     const term = search.value.trim();
-    filterChats(term);
+    const termLow = term.toLowerCase();
+    filterChats(termLow);
 });
 
 // sign up 
