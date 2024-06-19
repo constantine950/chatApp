@@ -36,13 +36,15 @@ onSnapshot(q, snapshot => {
             const when = format(data.created_at.toDate(), 'HH:mm');
            // update ui
            const html = `
-                <li class="relative mt-5">
+                <li class="mt-5 space-x-2">
                     <img class="w-12 h-12 rounded-full" src="./imagesdtyuij.jpg" alt="">
-                    <div class="flex justify-between absolute top-0 left-16 right-2">
-                        <div class="font-bold">${data.username}</div>
-                        <div class="text-sm">${when}</div>
+                    <div class="break-words -mt-[3.2rem] pl-[3.2rem]">
+                        <div class="flex justify-between items-center">
+                            <div class="font-bold">${data.username}</div>
+                            <div class="text-sm">${when}</div>
+                        </div>
+                        <div>${data.message}</div>
                     </div>
-                    <span class="absolute top-6 left-16 right-2 break-words pb-7">${data.message}</span>
                 </li>
            `;
             msgList.innerHTML += html;
